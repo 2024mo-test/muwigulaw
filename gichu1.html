@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>국가유산관련법령 모의고사</title>
+    <!-- 구글 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 부트스트랩 JS 및 제이쿼리 추가 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: "Gowun Dodum", sans-serif;
+            color: black;
+        }
+
+        body {
+            background-color: #e0e0e0;
+            /* 전체 배경 명암 처리 */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 20px;
+        }
+
+        /* 전체 컨테이너 */
+        .container {
+            width: 25cm;
+            /* 전체 시험지 크기 */
+            background-color: white;
+            /* 시험지 영역을 화이트로 */
+            margin: 0 auto;
+            /* 중앙 정렬 */
+            padding: 50px;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        /* 페이지 하단의 이전/다음 버튼 */
+        .footer {
+            position: absolute;
+            bottom: -60px;
+            /* 문제지 박스 외곽 경계선 아래에 위치 */
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            /* 버튼과 좌우 화면 끝 사이 간격 */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            width: auto;
+            /* 버튼의 너비가 경계선을 넘지 않게 자동으로 조정 */
+        }
+
+        /* 헤드 영역 */
+        .header {
+            width: 100%;
+            max-width: 24cm;
+            /* 18cm로 고정된 시험지 폭 */
+            height: 50px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 8px;
+            /* 상단 패딩 */
+
+            box-sizing: border-box;
+            background-color: rgba(220, 220, 220, 0.5);
+            /* 약한 회색 배경 */
+            line-height: 50px;
+        }
+
+        .left-header {
+            padding-left: 20px;
+            /* 좌측 텍스트를 안으로 넣음 */
+        }
+
+        .right-header {
+            padding-right: 40px;
+            /* 우측 텍스트를 안으로 넣음 */
+        }
+
+        /* 문제 영역의 좌우 배치 대신 위아래 배치 */
+        .problem-area {
+            width: 22cm;
+            border: none;
+            /* 외곽 경계선 제거 */
+            padding: 40px;
+            box-sizing: border-box;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            /* 세로 방향으로 배치 */
+            position: relative;
+            font-size: 17px !important;
+        }
+
+        /* 문제 영역에 임시 배경 컬러 추가 */
+        .question {
+            margin-bottom: 23px !important;
+            /* 질문지와 질문지 사이 간격 줄이기 */
+            padding: 5px;
+            background-color: transparent;
+            /* 문제 내부는 흰색으로 강조 */
+
+            box-sizing: border-box;
+        }
+
+        /* 질문 텍스트 줄바꿈 설정 */
+        .question p {
+            margin: 8px;
+            /* 질문지와 답지 사이 간격 줄이기 */
+            text-indent: -1em;
+            /* 질문 번호 바로 아래에서 시작되지 않도록 */
+            padding-left: 0.5em;
+            /* 첫 줄 이후 줄 시작을 동일하게 맞춤 */
+        }
+
+        .choices {
+            margin-top: 0px !important;
+            /* 질문지와 답지 사이 간격을 줄이기 */
+        }
+
+        /* 선택지 텍스트 줄바꿈 설정 */
+        .choices .choice {
+            text-indent: -1.5em;
+            /* 선택지 번호 바로 아래에서 줄이 시작되지 않도록 */
+            padding-left: 2em;
+            /* 첫 줄 이후 줄 시작을 동일하게 맞춤 */
+            margin-bottom: 5px;
+        }
+
+        /* 선택지 버튼 활성화 */
+        .choice-button {
+            width: 30px;
+            /* 선택지 버튼의 넓이 */
+            height: 30px;
+            /* 선택지 버튼의 높이 */
+            line-height: 30px;
+            /* 텍스트를 중앙에 배치 */
+            text-align: center;
+            /* 텍스트 중앙 정렬 */
+            border-radius: 50%;
+            /* 둥근 버튼 */
+            padding: 0;
+            /* 추가 여백 없음 */
+            margin-right: 5px;
+            /* 선택지 텍스트와의 간격 */
+            cursor: pointer;
+            box-sizing: border-box;
+            /* 테두리와 내부 여백을 포함한 크기 정의 */
+            position: relative;
+            /* ✔ 표시 위치 기준 */
+        }
+
+        .choice-button.selected::after {
+            content: 'V';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -45%);
+            /* 중심에서 약간 위 */
+            font-size: 19px;
+            font-weight: bold;
+
+            pointer-events: none;
+        }
+
+        .choice-button.selected.correct::after {
+            color: black;
+        }
+
+        /* 오답인 경우 (빨강) */
+        .choice-button.selected.incorrect::after {
+            color: red;
+        }
+
+        /* 버튼에 마우스를 올렸을 때 투명한 원형 실선 유지 */
+        .choice-button:hover {
+            border-color: transparent;
+            /* 여전히 투명 */
+        }
+
+        .choices-horizontal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            /* 줄바꿈 허용 (선택사항); 2유형 */
+            gap: 10px;
+        }
+
+        .choices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 20px;
+            /* 세로(위 아래 간격) 10px, 가로(좌우 간격) 30px 간격 ; 3유형 */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 13cm;
+            /* 가로 13cm */
+            height: 7cm;
+            /* 세로 7cm */
+            border-radius: 10px;
+            /* 각 모서리 레디우스 10px */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            /* 상단 약한 명암 처리 */
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            /* 좌우 정렬 */
+            align-items: center;
+            /* 내용 수직 중앙 정렬 */
+            font-size: 20px;
+            /* 상단 폰트 크기 */
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 1px solid lightgray;
+            /* 상단 구분선 */
+            height: 40px;
+            /* 상단의 높이 고정 */
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            /* 확인 버튼 우측 정렬 */
+            border-top: none;
+            /* 보이지 않게 투명 처리 */
+        }
+
+        .modal-body {
+            padding: 6px;
+            font-size: 16px;
+            /* 텍스트 폰트 크기 */
+            line-height: 1.5;
+            /* 줄 간격 설정 */
+        }
+
+        button.confirm-button {
+            width: 50px;
+            /* 버튼의 너비 */
+            height: 30px;
+            /* 버튼의 높이 */
+            padding: 3px 3px;
+            /* 내부 여백 조정 */
+            margin: 0;
+            /* 외부 여백 제거 */
+            line-height: normal;
+            /* 텍스트가 중앙에 위치하도록 */
+            border-radius: 10px;
+            /* 모서리 둥글게 */
+            background-color: rgb(161, 160, 160);
+            /* 버튼 배경색 (녹색) */
+            color: white;
+            /* 버튼 글씨색 */
+            font-size: 16px;
+            /* 폰트 크기 */
+            border: none;
+            /* 테두리 제거 */
+            cursor: pointer;
+            /* 커서 모양 변경 */
+        }
+
+        button.confirm-button:hover {
+            background-color: #45a049;
+            /* 마우스 오버 시 버튼 색상 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            margin-left: 0;
+            padding: 4px 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function handleChoiceClick(element, isCorrect, modalId) {
+            const questionBox = element.closest('.question'); // 해당 문제 영역
+            const buttons = questionBox.querySelectorAll('.choice-button');
+
+            // 기존 선택 해제 및 클래스 제거
+            buttons.forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // 새 선택 적용
+            element.classList.add('selected');
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+            }
+
+            // 정오답 처리
+            const answerText = document.getElementById(modalId).querySelector('#answerText');
+            answerText.textContent = isCorrect ? '정답입니다!' : '오답입니다.';
+            document.getElementById(modalId).style.display = "block";
+        }
+    </script>
+    <script>
+        function openAnswerModal(isCorrect, modalId) {
+            // 정답 여부 설정
+            const answerText = document.getElementById(modalId).querySelector('#answerText');
+            answerText.textContent = isCorrect ? '정답입니다!' : '오답입니다.';
+
+            // 모달창 열기
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- 전체 컨테이너 -->
+    <div class="container">
+        <!-- 헤드 영역 -->
+        <div class="header">
+            <div class="left-header">
+                <h1 style="font-size: 24px; font-weight: 550; line-height: normal;">문화유산위원회 규정</h1>
+                <!-- 수동 입력 -->
+            </div>
+            <div class="right-header">
+                <h3 style="font-size: 20px; line-height: normal;"> 기출 문제 ( 2025. 07 ) </h3> <!-- 수동 입력 -->
+            </div>
+        </div>
+        <!-- 문제 영역 -->
+        <div class="problem-area">
+            <!-- 좌측 문제 칸 -->
+            <div class="left-column">
+                <!-- 문제 영역 -->
+                <div class="question">
+                    <p>1. 「문화유산위원회 규정」의 내용에 관한 설명으로 옳지 않은 것은? (22 기출) </p>
+                    <div class="choices">
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal1')">①</span>
+                            전문위원의 사임 등으로 새로 위촉된 전문위원의 임기는 전임자 임기의 남은 기간으로 한다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal1')">②</span>
+                            합동분과위원회의 의장은 그 합동분과위원회에서 호선한다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button" onclick="handleChoiceClick(this, true, 'answerModal1')">③</span>
+                            문화유산위원회 위원의 임기는 2년으로 하고, 세 차례 연임할 수 있다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal1')">④</span> 문화유산위원회 위원이 제척 사유에
+                            해당하는 경우에는 스스로 해당 안건의 심의․의결
+                            에서 회피(回避)해야 한다.
+                        </div>
+                    </div>
+                </div>
+                <!-- 문제 영역이 끝나는 부분 아래에 배치 -->
+                <div id="answerModal1" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span id="answerText">정답입니다!</span> <!-- 좌측 정답 여부 표시 -->
+                            <button class="confirm-button" onclick="closeModal('answerModal1')">확인</button>
+                            <!-- 우측 끝 확인 버튼 -->
+                        </div>
+                        <!-- 하단 텍스트 영역을 아래에 배치 -->
+                        <div class="modal-body">
+                            <p id="lawText">법조문 ; 문화유산위원회 규정 제2조 제3항 <br> ③ 법 제8조제2항에 따라 위촉된 위원의 임기는 2년으로 한다. </p>
+                            <!-- 법조문 표시 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 문제 영역 -->
+                <div class="question">
+                    <p>2. 「문화유산위원회 규정」상 분과위원회에 관한 설명으로 옳지 않은 것은? (23 기출)
+                    </p>
+                    <div class="choices">
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal2')">①</span>
+                            분과위원회의 간사와 서기는 국가유산청장이 소속공무원 중에서 임명한다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button" onclick="handleChoiceClick(this, true, 'answerModal2')">②</span>
+                            궁능문화유산분과위원회 분장사항은 매장유산분과위원회의 분장사항에서 제외된다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal2')">③</span>
+                            근현대문화유산분과위원회 분장사항 및 궁능문화유산분과위원회 분장사항은 사적분과위원회의 분장사항에서 제외된다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal2')">④</span>
+                            분과위원회는 소위원회를 구성ㆍ운영할 수 있으며, 이 경우 소위원회 위원은 분과위원회나 합동분과위원회의 위원과 해당 분야의 전문가 중에서 분과위원회의 위원장이나
+                            합동분과위원회의 의장이 지정한다.
+                        </div>
+                    </div>
+                </div>
+                <!-- 문제 영역이 끝나는 부분 아래에 배치 -->
+                <div id="answerModal2" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span id="answerText">정답입니다!</span> <!-- 좌측 정답 여부 표시 -->
+                            <button class="confirm-button" onclick="closeModal('answerModal2')">확인</button>
+                            <!-- 우측 끝 확인 버튼 -->
+                        </div>
+                        <!-- 하단 텍스트 영역을 아래에 배치 -->
+                        <div class="modal-body">
+                            <p id="lawText">법조문 ; 문화유산위원회 규정 제5조 제4호 <br> 4. 매장유산분과위원회: 「매장유산 보호 및 조사에 관한 법률」 제2조에 따른
+                                매장유산에 관한 사항. 다만, 「자연유산의 보존 및 활용에 관한 법률」 제7조의3제1항에 따른 자연유산위원회의 심의사항은 제외한다.
+                            </p>
+                            <!-- 법조문 표시 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 문제 영역 -->
+                <div class="question">
+                    <p>3. 「문화유산위원회 규정」상 문화유산위원회에 관한 설명으로 옳지 않은 것은? (24 기출)</p>
+                    <div class="choices">
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal3')">①</span>
+                            위원장 1명 및 부위원장 2명을 포함한 100명 이내의 위원으로 구성한다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal3')">②</span>
+                            국가유산청장은 시ㆍ도문화유산위원회의 위원인 사람을 문화유산위원회의 위원으로 위촉할 수 없다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button"
+                                onclick="handleChoiceClick(this, false, 'answerModal3')">③</span>
+                            건축문화유산분과위원회의 분장사항은 유형문화유산 중 건조물에 관한 사항이지만, 궁능문화유산분과위원회 분장사항은 제외한다.
+                        </div>
+                        <div class="choice">
+                            <span class="choice-button" onclick="handleChoiceClick(this, true, 'answerModal3')">④</span>
+                            사적분과위원회의 분장사항은 근현대문화유산분과위원회 분장사항을 포함한다
+                        </div>
+                    </div>
+                </div>
+                <!-- 문제 영역이 끝나는 부분 아래에 배치 -->
+                <div id="answerModal3" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span id="answerText">정답입니다!</span> <!-- 좌측 정답 여부 표시 -->
+                            <button class="confirm-button" onclick="closeModal('answerModal3')">확인</button>
+                            <!-- 우측 끝 확인 버튼 -->
+                        </div>
+                        <!-- 하단 텍스트 영역을 아래에 배치 -->
+                        <div class="modal-body">
+                            <p id="lawText">법조문 ; 문화유산위원회 규정 제5조 제3호 <br> 3. 사적분과위원회: 법 제2조제1항제3호에 따른 기념물에 관한 사항. 다만,
+                                제5호의 근현대문화유산분과위원회 분장사항 및 제8호의 궁능문화유산분과위원회 분장사항은 제외한다.
+                            </p> <!-- 법조문 표시 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 좌 이동 버튼 -->
+        <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+            <button onclick="goToPrev()" style="
+                width: 80px;
+                height: 35px;
+                font-size: 15px;
+                padding: 6px 10px;
+                background-color: #e8e7e7;
+                border: 1px solid #e8e7e7; /* 배경색과 동일하게 */
+                border-radius: 6px;">
+                ← 이전
+            </button>
+        </div>
+    </div>
+    <script>
+        function goToPrev() {
+            // 이전 페이지 링크로 이동
+            window.location.href = "index.html";  // ← 원하는 URL로 교체
+        }
+    </script>
+
+</body>
+
+</html>
