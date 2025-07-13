@@ -363,6 +363,21 @@
             document.getElementById(modalId).style.display = "none";
         }
     </script>
+    <style>
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
 
 </head>
 
@@ -808,10 +823,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- 좌 이동 버튼 -->
-        <div style="display: flex; justify-content: space-between; margin-top: 40px;">
-            <button onclick="goToPrev()" style="
+            <!-- 좌 이동 버튼 -->
+            <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                <button onclick="goToPrev()" style="
                 width: 80px;
                 height: 35px;
                 font-size: 15px;
@@ -819,16 +833,24 @@
                 background-color: #e8e7e7;
                 border: 1px solid #e8e7e7; /* 배경색과 동일하게 */
                 border-radius: 6px;">
-                ← 이전
-            </button>
+                    ← 이전
+                </button>
+            </div>
+        </div>
+        <script>
+            function goToPrev() {
+                // 이전 페이지 링크로 이동
+                window.location.href = "index.html";  // ← 원하는 URL로 교체
+            }
+        </script>
+        <!-- ✅ 저작권 문구 -->
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 13px; color: #999;">
+                ※ 이 모의고사 문제는 저작권 보호를 받으며, 무단 복제·배포·인용을 금합니다.
+            </p>
         </div>
     </div>
-    <script>
-        function goToPrev() {
-            // 이전 페이지 링크로 이동
-            window.location.href = "index.html";  // ← 원하는 URL로 교체
-        }
-    </script>
+
 
 </body>
 

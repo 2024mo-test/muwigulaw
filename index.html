@@ -159,6 +159,22 @@
             text-align: center;
         }
     </style>
+    <style>
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
 
 </head>
 
@@ -229,29 +245,34 @@
 
                     <!-- 질문 1 -->
                     <div style="margin-top: 3px; margin-bottom: 5px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">1.분과위원회 위원과 소위원회 위원은 국가유산청장이 지정한다. <br> 맞으면 1, 틀리면 2  </label>
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">1.분과위원회 위원과 소위원회 위원은
+                            국가유산청장이 지정한다. <br> 맞으면 1, 틀리면 2 </label>
                         <input type="text" id="gonghapQ1" class="form-control form-control-sm" style="width: 140px;">
                     </div>
 
                     <!-- 질문 2 -->
                     <div style="margin-bottom: 10px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">2. 근현대문화유산분과위원회는 문화유산법상 기념물과 근현대문화유산법상 국가등록문화유산에 관한 사항을 분장사항으로 한다. <br> 맞으면 1, 틀리면 2 </label>
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">2. 근현대문화유산분과위원회는 문화유산법상
+                            기념물과 근현대문화유산법상 국가등록문화유산에 관한 사항을 분장사항으로 한다. <br> 맞으면 1, 틀리면 2 </label>
                         <input type="text" id="gonghapQ2" class="form-control form-control-sm" style="width: 140px;">
                     </div>
 
                     <!-- 질문 3 -->
                     <div style="margin-bottom: 10px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">3. 위원회에는 200명 이내의 비상근 전문위원을 두어야 한다. <br> 맞으면 1, 틀리면 2  </label>
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">3. 위원회에는 200명 이내의 비상근
+                            전문위원을 두어야 한다. <br> 맞으면 1, 틀리면 2 </label>
                         <input type="text" id="gonghapQ3" class="form-control form-control-sm" style="width: 140px;">
                     </div>
                     <!-- 질문 4 -->
                     <div style="margin-bottom: 10px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">4. 분과위원회의 개편 등으로 해당 분과위원회가 운영되지 않는 경우 국가유산청장은 위원회등의 위원을 해촉하여야 한다. <br> 맞으면 1, 틀리면 2 </label>
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">4. 분과위원회의 개편 등으로 해당 분과위원회가
+                            운영되지 않는 경우 국가유산청장은 위원회등의 위원을 해촉하여야 한다. <br> 맞으면 1, 틀리면 2 </label>
                         <input type="text" id="gonghapQ4" class="form-control form-control-sm" style="width: 140px;">
                     </div>
                     <!-- 질문 5 -->
                     <div style="margin-bottom: 10px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">5. 이 영에 규정된 것 외에 위원회의 운영에 관하여 필요한 사항은 위원회의 의결을 거쳐 위원장이 정한다. 맞으면 1, 틀리면 2 </label>
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">5. 이 영에 규정된 것 외에 위원회의 운영에
+                            관하여 필요한 사항은 위원회의 의결을 거쳐 위원장이 정한다. 맞으면 1, 틀리면 2 </label>
                         <input type="text" id="gonghapQ5" class="form-control form-control-sm" style="width: 140px;">
                     </div>
                     <!-- 버튼 + 결과 문구 일렬 배치 -->
@@ -287,13 +308,14 @@
                     </div>
                     <!-- 질문 1 -->
                     <div style="margin-top: 3px; margin-bottom: 5px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">1. [문화유산위원회 규정] 종합 모의고사 암호키를 입력하세요.</label>
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">1. [문화유산위원회 규정] 종합 모의고사
+                            암호키를 입력하세요.</label>
                         <input type="text" id="siljeonQ1" class="form-control form-control-sm" style="width: 140px;">
                     </div>
 
                     <!-- 질문 2 -->
                     <div style="margin-bottom: 10px;">
-                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">2. 분과위원회의 종류는 
+                        <label style="font-weight: normal; font-size: 16px; margin-top: 6px;">2. 분과위원회의 종류는
                             (<span style="display:inline-block; min-width:20px;">&nbsp;</span>)개이다.</label>
                         <input type="text" id="siljeonQ2" class="form-control form-control-sm" style="width: 140px;">
                     </div>
@@ -376,7 +398,12 @@
             }
 
         </script>
-
+        <!-- ✅ 저작권 문구 -->
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 13px; color: #999;">
+                ※ 이 콘텐츠는 저작권 보호를 받으며, 무단 복제·배포·인용을 금합니다.
+            </p>
+        </div>
 </body>
 
 </html>
